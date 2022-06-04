@@ -26,11 +26,11 @@ namespace CompiladorNina
         public void analizar(string texto)
         {
             token lexema;
-            string[] fila = texto.Split("\r\n");
-            int index = 0;
-            foreach (string columns in fila)
+            string[] filas = texto.Split("\n");
+            int fila = 0;
+            foreach (string columns in filas)
             {
-                int num = 0;
+                int column = 1;
                 string[] columnas = columns.Split(" ");
                 foreach(string cadena in columnas)
                 {
@@ -38,10 +38,10 @@ namespace CompiladorNina
                     switch (cadena)
                     {
                         case "{":
-                            lexema.Tipo = "PR";
+                            lexema.Tipo = "SG";
                             break;
                         case "}":
-                            lexema.Tipo = "PU";
+                            lexema.Tipo = "SG";
                             break;
                         case "if":
                             lexema.Tipo = "CO";
@@ -59,28 +59,73 @@ namespace CompiladorNina
                             lexema.Tipo = "PR";
                             break;
                         case "(":
-                            lexema.Tipo = "PU";
+                            lexema.Tipo = "SG";
                             break;
                         case ")":
-                            lexema.Tipo = "PU";
+                            lexema.Tipo = "SG";
                             break;
+                        case "!=":
+                            lexema.Tipo = "OP";
+                            break;
+                        case "+":
+                            lexema.Tipo = "OP";
+                            break;
+                        case "-":
+                            lexema.Tipo = "OP";
+                            break;
+                        case "*":
+                            lexema.Tipo = "OP";
+                            break;
+                        case "/":
+                            lexema.Tipo = "OP";
+                            break;
+                        case ";":
+                            lexema.Tipo = "SP";
+                            break;
+                        default:
+                            if (int.TryParse(cadena, out int parsed) == true)
+                            {
+                                lexema.Tipo = "LN";
+                            }
+                            else
+                            {
+                                lexema.Tipo = "ID";
+                            }
+                            break;    
                     }
-                    lexema.Columna = num;
-                    lexema.Fila = index;
+                    lexema.Columna = column;
+                    lexema.Fila = fila;
                     lexema.Valor = cadena;
                     lexemas.Add(lexema);
                     
-                    num++;
+                    column++;
                 }
                 string json = JsonConvert.SerializeObject(lexemas);
                 System.IO.File.WriteAllText("..\\..\\..\\tokens.json", json);
-                index++;
+                fila++;
             }
         }
 
         private void analizarbtn_Click(object sender, EventArgs e)
         {
             analizar(codigofuente.Text.ToString());
+        }
+        //char last = 'a';
+        private void codigofuente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+           /* char actual=' ';
+            if (char.IsSeparator(e.KeyChar) || char.IsPunctuation(e.KeyChar) || char.IsSymbol(e.KeyChar))
+            {
+                if(char.IsLetterOrDigit(last))
+                {
+                    actual = e.KeyChar;
+                    richTextBox1.AppendText("adfa");
+                    MessageBox.Show("llego aca");
+                    //e.KeyChar = actual;
+                    richTextBox1.AppendText(e.KeyChar.ToString());
+                }
+            }
+            last = actual;*/
         }
     }
 }

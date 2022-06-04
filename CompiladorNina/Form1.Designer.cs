@@ -29,17 +29,9 @@ namespace CompiladorNina
         /// </summary>
         private void InitializeComponent()
         {
-            this.codigofuente = new System.Windows.Forms.TextBox();
             this.analizarbtn = new System.Windows.Forms.Button();
+            this.codigofuente = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
-            // 
-            // codigofuente
-            // 
-            this.codigofuente.Location = new System.Drawing.Point(52, 51);
-            this.codigofuente.Multiline = true;
-            this.codigofuente.Name = "codigofuente";
-            this.codigofuente.Size = new System.Drawing.Size(826, 470);
-            this.codigofuente.TabIndex = 0;
             // 
             // analizarbtn
             // 
@@ -51,24 +43,30 @@ namespace CompiladorNina
             this.analizarbtn.UseVisualStyleBackColor = true;
             this.analizarbtn.Click += new System.EventHandler(this.analizarbtn_Click);
             // 
+            // codigofuente
+            // 
+            this.codigofuente.Location = new System.Drawing.Point(103, 12);
+            this.codigofuente.Name = "codigofuente";
+            this.codigofuente.Size = new System.Drawing.Size(747, 481);
+            this.codigofuente.TabIndex = 2;
+            this.codigofuente.Text = "";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1027, 643);
-            this.Controls.Add(this.analizarbtn);
             this.Controls.Add(this.codigofuente);
+            this.Controls.Add(this.analizarbtn);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox codigofuente;
         private System.Windows.Forms.Button analizarbtn;
+        private System.Windows.Forms.RichTextBox codigofuente;
     }
 }
 

@@ -12,5 +12,6 @@ namespace CompiladorNina
         public string Tipo { get; set; }
         public int Columna { get; set; }
         public int Fila { get; set; }
+        public int ValorToken { get; set; }
     }
 }
